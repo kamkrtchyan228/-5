@@ -1,0 +1,29 @@
+def calculate_income_tax():
+    """
+    Рассчитывает подоходный налог на основе введенного годового дохода.
+    Выводит отформатированные результаты расчета.
+    """
+    TAX_RATE = 0.13  # Налоговая ставка 13%
+    
+    try:
+        # Ввод данных
+        annual_income = float(input("Введите ваш годовой доход: "))
+        
+        if annual_income < 0:
+            print("Ошибка: доход не может быть отрицательным.")
+            return
+        
+        # Расчеты
+        tax_amount = annual_income * TAX_RATE
+        net_income = annual_income - tax_amount
+        
+        # Вывод результатов
+        print(f"Общая сумма дохода: {annual_income:,.2f} руб.")
+        print(f"Сумма рассчитанного налога: {tax_amount:,.2f} руб.")
+        print(f"Сумма «на руки» после вычета налога: {net_income:,.2f} руб.")
+        
+    except ValueError:
+        print("Ошибка: пожалуйста, введите числовое значение.")
+
+# Запуск программы
+calculate_income_tax()
