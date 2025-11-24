@@ -1,0 +1,72 @@
+import math
+
+def calculate_rectangle_area(width, height):
+    """
+    Вычисляет площадь прямоугольника.
+    
+    Args:
+        width (float): Ширина прямоугольника
+        height (float): Высота прямоугольника
+    
+    Returns:
+        float: Площадь прямоугольника, вычисленная по формуле width * height
+    
+    Raises:
+        ValueError: Если width или height отрицательные числа
+    """
+    if width < 0 or height < 0:
+        raise ValueError("Ширина и высота должны быть неотрицательными числами")
+    
+    return width * height
+
+
+def calculate_circle_area(radius):
+    """
+    Вычисляет площадь круга.
+    
+    Args:
+        radius (float): Радиус круга
+    
+    Returns:
+        float: Площадь круга, вычисленная по формуле π * radius²
+    
+    Raises:
+        ValueError: Если radius отрицательное число
+    """
+    if radius < 0:
+        raise ValueError("Радиус должен быть неотрицательным числом")
+    
+    return math.pi * radius ** 2
+
+
+# Основная программа
+if __name__ == "__main__":
+    print("Универсальный калькулятор площади")
+    print("=" * 35)
+    
+    # Запрос данных для прямоугольника
+    print("\n--- Расчет площади прямоугольника ---")
+    try:
+        width = float(input("Введите ширину прямоугольника: "))
+        height = float(input("Введите высоту прямоугольника: "))
+        
+        rectangle_area = calculate_rectangle_area(width, height)
+        print(f"Площадь прямоугольника {width}×{height} = {rectangle_area:.2f}")
+        
+    except ValueError as e:
+        print(f"Ошибка: {e}")
+    except Exception as e:
+        print(f"Произошла ошибка при вводе данных: {e}")
+    
+    # Запрос данных для круга
+    print("\n--- Расчет площади круга ---")
+    try:
+        radius = float(input("Введите радиус круга: "))
+        
+        circle_area = calculate_circle_area(radius)
+        print(f"Площадь круга с радиусом {radius} = {circle_area:.2f}")
+        
+    except ValueError as e:
+        print(f"Ошибка: {e}")
+    except Exception as e:
+        print(f"Произошла ошибка при вводе данных: {e}")
