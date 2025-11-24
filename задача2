@@ -1,0 +1,85 @@
+def get_user_input():
+    """
+    Получает ввод от пользователя: вес и рост в одной строке через пробел.
+    
+    Returns:
+        tuple: Кортеж содержащий вес (float) и рост (float)
+    """
+    input_data = input("Введите ваш вес (кг) и рост (м) через пробел: ")
+    data_list = input_data.split()
+    
+    if len(data_list) != 2:
+        raise ValueError("Необходимо ввести ровно два числа: вес и рост")
+    
+    weight, height = map(float, data_list)
+    return weight, height
+
+
+def calculate_bmi(weight, height):
+    """
+    Рассчитывает Индекс Массы Тела (ИМТ) по формуле.
+    
+    Args:
+        weight (float): Вес в килограммах
+        height (float): Рост в метрах
+    
+    Returns:
+        float: Рассчитанный ИМТ
+    """
+    if height <= 0:
+        raise ValueError("Рост должен быть положительным числом")
+    
+    bmi = weight / (height * height)
+    return bmi
+
+
+def interpret_bmi(bmi):
+    """
+    Интерпретирует значение ИМТ и возвращает категорию.
+    
+    Args:
+        bmi (float): Значение ИМТ
+    
+    Returns:
+        str: Категория ИМТ
+    """
+    if bmi < 18.5:
+        return "Недостаточный вес"
+    elif 18.5 <= bmi < 25:
+        return "Нормальный вес"
+    elif 25 <= bmi < 30:
+        return "Избыточный вес"
+    else:
+        return "Ожирение"
+
+
+def main():
+    """
+    Основная функция программы, координирующая процесс расчета ИМТ.
+    """
+    try:
+        # Получаем данные от пользователя
+        weight, height = get_user_input()
+        
+        # Рассчитываем ИМТ
+        bmi = calculate_bmi(weight, height)
+        
+        # Интерпретируем результат
+        category = interpret_bmi(bmi)
+        
+        # Выводим результат
+        print(f"\nРезультаты расчета ИМТ:")
+        print(f"Вес: {weight} кг")
+        print(f"Рост: {height} м")
+        print(f"ИМТ: {bmi:.1f}")
+        print(f"Категория: {category}")
+        
+    except ValueError as e:
+        print(f"Ошибка ввода: {e}")
+    except Exception as e:
+        print(f"Произошла ошибка: {e}")
+
+
+# Запуск программы
+if __name__ == "__main__":
+    main()
